@@ -17,14 +17,15 @@ namespace Business.Concrete
         }
         public void Add(Car car)
         {
-            if (car.Description.Length<2 && car.DailyPrice == 0)
+            if (car.Description.Length < 2 && car.DailyPrice == 0)
             {
-                Console.WriteLine("Geçersiz araba");
+                Console.WriteLine("Geçersiz Araba");
             }
             else
             {
                 _carDal.Add(car);
             }
+            
         }
 
         public void Delete(Car car)
@@ -37,14 +38,15 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public List<Car> GetCarsByBrandId(int brandId)
+
+        public Car GetCarsByBrandId(int brandid)
         {
-            return _carDal.GetAll(c => c.BrandId == brandId);
+            return _carDal.Get(c => c.BrandId == brandid);
         }
 
-        public List<Car> GetCarsByColorId(int colorId)
+        public Car GetCarsByColorId(int colorid)
         {
-            return _carDal.GetAll(c => c.ColorId == colorId);
+            return _carDal.Get(c => c.ColorId == colorid);
         }
 
         public void Update(Car car)

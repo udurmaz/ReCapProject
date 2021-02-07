@@ -6,18 +6,29 @@ using System;
 
 namespace ConsoleUı
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            AddMetoduTest();
+            //foreach (var car in carManager.GetCarsByBrandId(1))
+            //{
+            //    Console.WriteLine("Arabanın modeli "+ car.Description + " Arabanın üretim yılı "  + car.ModelYear + "Arabanın günlük ücreti " + car.DailyPrice);
+            //}
+            //Console.ReadLine();
+
+
+        }
+
+        private static void AddMetoduTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
-            carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 100, Description = "BMW", Id = 1, ModelYear = 2014 });
-            foreach (var car in carManager.GetCarsByBrandId(1))
+            carManager.Add(new Car { BrandId = 2, ColorId = 3, DailyPrice = 120, Description = "Ford", Id = 3, ModelYear = 2010 });
+            foreach (var car in carManager.GetAll())
             {
-                Console.WriteLine("Arabanın modeli "+ car.Description + " Arabanın üretim yılı "  + car.ModelYear + "Arabanın günlük ücreti " + car.DailyPrice);
+                Console.WriteLine(car.Description);
             }
             Console.ReadLine();
-           
         }
     }
 }
