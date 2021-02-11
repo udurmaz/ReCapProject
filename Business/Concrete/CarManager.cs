@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Core.Utilities.Results;
+using Business.Constants;
 
 namespace Business.Concrete
 {
@@ -15,43 +17,48 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.Description.Length < 2 && car.DailyPrice == 0)
             {
-                Console.WriteLine("Geçersiz Araba");
+                return new ErrorResult(Messages.CarNameInvalid);
             }
             else
             {
                 _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
             }
             
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>> (_carDal.GetAll(),Messages.CarListed);
         }
 
 
-        public Car GetCarsByBrandId(int brandid)
+        public IDataResult<Car> GetCarsByBrandId(int brandid)
         {
-            return _carDal.Get(c => c.BrandId == brandid);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.BrandId == brandid));
         }
 
-        public Car GetCarsByColorId(int colorid)
+        public IDataResult<Car> GetCarsByColorId(int colorid)
         {
-            return _carDal.Get(c => c.ColorId == colorid);
+            return new SuccessDataResult<Car> (_carDal.Get(c => c.ColorId == colorid));
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new  SuccessResult(Messages.CarUpdated); // Newlemeyi unutma !!
         }
+
+       
     }
 }
