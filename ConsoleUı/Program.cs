@@ -22,7 +22,16 @@ namespace ConsoleUı
             ColorManager colorManager = new ColorManager(new EfColorDal());
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            GetCustomersDetailTest();
+            //carManager.Add(new Car
+            //{
+            //    Id = 5,
+            //    BrandId = 1,
+            //    ColorId = 1,
+            //    DailyPrice = 150,
+            //    ModelYear = 2016,
+            //    Description = "Skoda"
+            //});
+            //GetCustomersDetailTest();
             void GetCustomersDetailTest()
             {
                 CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
