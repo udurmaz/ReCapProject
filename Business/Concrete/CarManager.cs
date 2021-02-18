@@ -7,6 +7,9 @@ using System.Text;
 using System.Linq;
 using Core.Utilities.Results;
 using Business.Constants;
+using FluentValidation;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 
 namespace Business.Concrete
 {
@@ -19,16 +22,12 @@ namespace Business.Concrete
         }
         public IResult Add(Car car)
         {
-            if (car.Description.Length < 2 && car.DailyPrice == 0)
-            {
-                return new ErrorResult(Messages.CarNameInvalid);
-            }
-            else
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
-            }
-            
+            ValidationTool.Validate(new CarValidator(), car);
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+
+
+
         }
 
         public IResult Delete(Car car)
@@ -39,7 +38,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>> (_carDal.GetAll(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
 
@@ -50,15 +49,15 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetCarsByColorId(int colorid)
         {
-            return new SuccessDataResult<Car> (_carDal.Get(c => c.ColorId == colorid));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.ColorId == colorid));
         }
 
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new  SuccessResult(Messages.CarUpdated); // Newlemeyi unutma !!
+            return new SuccessResult(Messages.CarUpdated); // Newlemeyi unutma !!
         }
 
-       
+
     }
 }

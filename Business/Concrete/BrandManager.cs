@@ -18,6 +18,7 @@ namespace Business.Concrete
         }
         public IResult Add(Brand brand) //voidleri IResult yapmayı unutma
         {
+            //Validation
             _brandDal.Add(brand);
             return new ErrorResult(Messages.BrandNameAdded);
         }
