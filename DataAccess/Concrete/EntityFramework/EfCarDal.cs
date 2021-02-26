@@ -33,7 +33,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarId = c.Id
                              };
                 return result.ToList();
-                             
+                
+
             }
         }
     }

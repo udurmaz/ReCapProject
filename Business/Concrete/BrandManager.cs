@@ -23,7 +23,7 @@ namespace Business.Concrete
         {
             //Validation
             _brandDal.Add(brand);
-            return new ErrorResult(Messages.BrandNameAdded);
+            return new SuccessResult(Messages.BrandNameAdded);
         }
 
         public IResult Delete(Brand brand)
