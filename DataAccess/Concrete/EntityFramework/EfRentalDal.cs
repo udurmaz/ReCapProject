@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
                 //Linq kütüphanesini eklemeyi unutma 
                 var result = from c in context.Customers
                              join u in context.Users
-                             on c.UserId equals u.userId
+                             on c.UserId equals u.Id
                              select new RentalDetailsDto
                              {
                                  UserId = c.UserId,
