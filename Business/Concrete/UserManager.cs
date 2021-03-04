@@ -23,7 +23,7 @@ namespace Business.Concrete
         {
             return _userDal.GetClaims(user);
         }
-        [SecuredOperation("user.add,Admin")] //Bu yapıya claim diyoruz
+        //[SecuredOperation("user.add,Admin")] //Bu yapıya claim diyoruz
         //[ValidationAspect(typeof(UserValidation))]
         public void Add(User user)
         {
