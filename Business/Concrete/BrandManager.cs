@@ -36,7 +36,7 @@ namespace Business.Concrete
         {
             // İş kodları buraya yazılır
             // Saat 22 olduğunda sistem bakıma alınsın gibi kod yazdık
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 24)
             {
                 return new ErrorDataResult<List<Brand>>(Messages.MaintenanceTime);
             }
