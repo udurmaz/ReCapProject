@@ -15,6 +15,8 @@ using Business.BusinessAspect.Autofac;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Performance;
+using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace Business.Concrete
 {
@@ -57,6 +59,15 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
+        }
+
+        public IDataResult<List<CarDetailsDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null)
+        {
+            if (DateTime.Now.Hour == 5)
+            {
+                return new ErrorDataResult<List<CarDetailsDto>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(filter));
         }
 
         [CacheAspect]
