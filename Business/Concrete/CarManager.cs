@@ -70,21 +70,25 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
         }
-
-
-
         [CacheAspect]
         [PerformanceAspect(5)]
-        public IDataResult<List<Car>> GetCarsByBrandId(int brandid)
+        public IDataResult<List<CarDetailsDto>> GetCarsByBrandId(int brandid)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll((c => c.BrandId == brandid)));
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p => p.BrandId == brandid));
         }
+
+        public IDataResult<List<CarDetailsDto>> GetCarsByColorId(int colorid)
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p => p.ColorId == colorid));
+        }
+
+        
 
       
         [CacheAspect]
-        public IDataResult<List<Car>> GetCarsByColorId(int colorid)
+        public IDataResult<List<CarDetailsDto>> GetCarsDetailByColorId(int colorid)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll((c => c.ColorId == colorid)));
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p => p.ColorId == colorid));
         }
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
