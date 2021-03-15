@@ -81,10 +81,13 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        
+
+
         [HttpGet("details")]
         public IActionResult GetCarDetails()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
             var result = _carService.GetCarDetails();
             if (result.Success)

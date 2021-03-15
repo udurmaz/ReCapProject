@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             //Dependency chain
             
             var result = _brandService.GetAll();

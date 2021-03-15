@@ -61,14 +61,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
+        
         public IDataResult<List<CarDetailsDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             if (DateTime.Now.Hour == 5)
             {
                 return new ErrorDataResult<List<CarDetailsDto>>(Messages.MaintenanceTime);
             }
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(filter));
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
         }
+
+
 
         [CacheAspect]
         [PerformanceAspect(5)]
@@ -76,6 +79,8 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll((c => c.BrandId == brandid)));
         }
+
+      
         [CacheAspect]
         public IDataResult<List<Car>> GetCarsByColorId(int colorid)
         {

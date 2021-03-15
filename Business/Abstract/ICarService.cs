@@ -18,5 +18,6 @@ namespace Business.Abstract
         IResult Delete(Car car);
         IResult AddTransactionalTest(Car car);
         IDataResult<List<CarDetailsDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null);
+
     }
 }
