@@ -61,7 +61,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
-        
+        public IDataResult<List<CarDetailsDto>> GetCarDetailById(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p => p.Id == carId));
+        }
+
         public IDataResult<List<CarDetailsDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             if (DateTime.Now.Hour == 5)
@@ -81,10 +85,6 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(p => p.ColorId == colorid));
         }
-
-        
-
-      
         [CacheAspect]
         public IDataResult<List<CarDetailsDto>> GetCarsDetailByColorId(int colorid)
         {
@@ -97,7 +97,5 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated); // Newlemeyi unutma !!
         }
-
-
     }
 }

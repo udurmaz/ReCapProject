@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -47,5 +48,8 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başarılı giriş" ;
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
+        public static string CarImageNotFound = "Resim bulunamadı";
+
+        public static string CarImageCountExceeded = "En fazla 5 resim eklenebilir";
     }
 }
