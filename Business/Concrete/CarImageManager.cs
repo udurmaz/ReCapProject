@@ -44,6 +44,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
+        public IDataResult<List<CarImage>> GetAllImagesByCarId(int CarId)
+        {
+            return new SuccessDataResult<List<CarImage>>(CheckIfDefaultImages(CarId));
+        }
+
         public IDataResult<CarImage> GetById(int id)
         {
             //List yok
@@ -63,6 +68,18 @@ namespace Business.Concrete
                 return new ErrorResult();
             }
             return new SuccessResult();
+        }
+        private List<CarImage> CheckIfDefaultImages(int Id)
+        {
+            var DefaultPath = AppDomain.CurrentDomain.BaseDirectory + "C:\\Users\\udurm\\Desktop\\img\\skoda.jpg";
+
+
+            var result = _carImageDal.GetAll(p => p.CarId == Id).Any();
+            if (!result)
+            {
+                return new List<CarImage> { new CarImage { CarId = Id, ImagePath = DefaultPath, Date = DateTime.Now } };
+            }
+            return _carImageDal.GetAll(p => p.CarId == Id);
         }
     }
 }

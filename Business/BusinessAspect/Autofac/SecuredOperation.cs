@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Core.Extensions;
 using Business.Constants;
 
+
 namespace Business.BusinessAspect.Autofac
 {
     public class SecuredOperation : MethodInterception
