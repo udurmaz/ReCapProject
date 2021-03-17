@@ -81,5 +81,6 @@ namespace Business.Concrete
             }
             return _carImageDal.GetAll(p => p.CarId == Id);
         }
+
     }
 }

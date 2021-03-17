@@ -28,10 +28,13 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  CarId = c.Id,
                                  BrandName = b.BrandName,
+                                 BrandId = b.BrandId,
+                                 ColorId = co.ColorId,
                                  ColorName = co.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 Description = c.Description
+                                 Description = c.Description,
+                                 ImagePath = (from a in context.CarImages where a.CarId == c.Id select a.ImagePath).FirstOrDefault()
                              };
 
                 return result.ToList();
